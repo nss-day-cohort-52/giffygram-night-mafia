@@ -8,7 +8,7 @@ Open a terminal window and go to the `giffygram` directory.
 
 1. `cd api`
 1. `cp db.json.example giffygram.json`
-1. ` `
+1. `json-server giffygram.json`
 
 ### Starting the Web Server
 
