@@ -18,4 +18,7 @@ const applicationElement = document.querySelector(".giffygram")
 }
 renderApp()
 
+
+
+
 applicationElement.addEventListener("statechanged", customEvent=>{renderApp()})

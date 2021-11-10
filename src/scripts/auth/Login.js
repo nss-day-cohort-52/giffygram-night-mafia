@@ -15,7 +15,7 @@ document.addEventListener("click", clickEvent => {
             }
         }
 
-        if (foundUser !== null) {
+        if (foundUser !== null) { //if user is NOT == to null ! is a bang operator
             localStorage.setItem("gg_user", foundUser.id)
             document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
         }
