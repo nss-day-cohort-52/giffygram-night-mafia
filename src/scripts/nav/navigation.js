@@ -7,7 +7,7 @@ export const navbar = ()=>{
         <div id="navigation__name">GiffyGram</div>
         <div id="directMessageIcon"> <img src="images/fountain-pen.svg" alt="pen"/> </div>
         <div class="notification__count"> 1 </div>
-        <Button id ="logout"> logout </button>
+        <button id="logout"> logout </button>
     
     </navbar>
 

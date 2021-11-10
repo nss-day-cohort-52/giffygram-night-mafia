@@ -1,10 +1,9 @@
-
 const applicationElement = document.querySelector(".giffygram")
 
 
 const applicationState = {
     users:[],
-    post: [],
+    posts: [],
     likes: [],
     followers: [],
     currentUser: {},
@@ -29,4 +28,17 @@ export const fetchUsers = () => {   // creating a function that grabs the inform
 
 export const getUsers = () => {
     return applicationState.users.map(user => ({ ...user })) //exporting a copy of users array data
+}
+
+export const fetchPosts = () => { 
+
+    return fetch(`${API}/posts`)
+        .then(response => response.json()) 
+        .then((posts) => {
+            applicationState.posts = posts  
+        })
+}
+
+export const getPosts = () => {
+    return applicationState.posts.map(post => ({ ...post })) 
 }
