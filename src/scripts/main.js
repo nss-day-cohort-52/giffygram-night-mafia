@@ -16,3 +16,6 @@ const applicationElement = document.querySelector(".giffygram")
     }
 }
 renderApp()
+
+
+
