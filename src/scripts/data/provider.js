@@ -1,4 +1,4 @@
-const apiURL = "http://localhost:8088"
+const apiURL = "http://localhost:3000"
 const applicationElement = document.querySelector(".giffygram")
 
 
@@ -15,7 +15,7 @@ const applicationState = {
     }
 }
 
-const API = "http://localhost:8088"
+const API = "http://localhost:3000"
 
 
 export const fetchUsers = () => {   // creating a function that grabs the information users put into radio buttons
