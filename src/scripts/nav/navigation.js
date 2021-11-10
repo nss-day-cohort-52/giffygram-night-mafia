@@ -1,10 +1,16 @@
+
+
 export const navbar = ()=>{
     return `
-    <nav class="navbar">
-    <img src="images/pb.png" alt="giffy logo">
-    <h1>GiffyGram</h1>
-    <img src="images/pen.svg" alt="pen">
-    </nav>
+    <navbar class="navigation">
+        <div class="navigation__icon"> <img src="images/pb.png" alt="giffy logo"/> </div>
+        <div id="navigation__name">GiffyGram</div>
+        <div id="directMessageIcon"> <img src="images/fountain-pen.svg" alt="pen"/> </div>
+        <div class="notification__count"> 1 </div>
+        <Button id ="logout"> logout </button>
+    
+    </navbar>
 
     `
 }
+

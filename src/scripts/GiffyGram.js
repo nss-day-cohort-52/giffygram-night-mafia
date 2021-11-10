@@ -1,8 +1,8 @@
-import {navbar}
+import { navbar } from "./nav/navigation.js"
 
 export const GiffyGram = () => {
 
     // Show main main UI
-    return `<h1>Giffygram</h1>
-    navbar()`
+    return `
+    ${navbar()}`
 }
