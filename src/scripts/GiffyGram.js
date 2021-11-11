@@ -1,5 +1,6 @@
 import { navbar } from "./nav/navigation.js"
 import { footer } from "./nav/Footer.js"
+import { MessageForm } from "./message/MessageForm.js"
 import { postList } from "./feed/PostList.js"
 import { postButton, postEntry } from "./feed/PostEntry.js"
 
@@ -32,6 +33,9 @@ export const GiffyGramWithPost = () => {
         ${footer()}
     </div>
     
+    <div class="footer_div">
+        ${MessageForm()}
+    </div>
 
     <section class="postList">${postList()}</section>
     `
