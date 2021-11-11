@@ -1,51 +1,62 @@
-import { sendMessage } from "./provider.js"
-import { lettersAuthor } from "./Authors.js"
-import { lettersTopic } from "./Topics.js"
-import { lettersRecipient } from "./Recipients.js"
+import { getUsers } from "../data/provider.js";
 
-const mainContainer = document.querySelector("#container")
+const applicationElement = document.querySelector(".giffygram");
 
-mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "sendLetter") {
-        // Get what the user typed into the form fields
-        const userPenPal = document.querySelector("[name='penPal']").value  //accessing a compoenent of the DOM based on what's in the (), returning the value of penPal.  
-        const userLetter = document.querySelector("[name='letter']").value  
-        const userTopic = document.querySelector("[name='topic']").value
-        const userRecipient = document.querySelector("[name='recipient']").value
+// applicationElement.addEventListener("click", event => {
+//     if (event.target.id === "sendButton") {
+//         const recipientId = document.querySelector("#msg_recipient").value
+//         const messageBody = document.querySelector("#message_body").value
+//         const topic = document.querySelector("#msg_topic_input").value
+        
+//         const dataToSendToAPI = {
+//             userId: parseInt(localStorage.getItem("gg_user")), //need to display name of sender/user
+//             recipientId: parseInt(recipientId),
+//             topic: topic,
+//             messageBody: messageBody,
+//             dateSent: new Date().toLocaleDateString(),
+//         }
 
-        // Make an object out of the user input
-        const dataToSendToAPI = {
-            authorId: parseInt(userPenPal),
-            message: userLetter,
-            topicId: parseInt(userTopic),
-            recipientId: parseInt(userRecipient)
-        }
+//         savePendingMessage(dataToSendToAPI);
+//         sendMessage(dataToSendToAPI);
+//     } else if (event.target.id === "exitButton") {
+//         applicationElement.dispatchEvent(new CustomEvent("messageFormStateChanged"));
+//     } else if (event.target.id === "cancelButton") {
+//         applicationElement.dispatchEvent(new CustomEvent("messageFormStateChanged"));
+//     }
+// });
 
-        // Sends new letter data to the API for permanent storage
-        sendMessage(dataToSendToAPI)
-    }
-})
-// HTML setup of what will be displayed in the browser
-export const ComposeMessages = () => {
-    let html =  `
-    <div class="field">
-    <label class="label" for="penPal"></label>
-    ${messagesAuthor()}
-    </div>
-    <div class="field">
-        <label class="label" for="letter">Letter</label>
-        <textarea name="letter" class="letterInput" /></textarea>
-    </div>
-    <div class="field">
-    <label class="label" for="topic"></label>
-    ${messagesTopic()}
-    </div>
-    <div class="field">
-        <label class="label" for="recipient">Recipient</label>
-        ${messagesRecipient()}
-    </div>
+export const MessageForm = (state) => {
+    const users = getUsers();
 
-    <button class="button" id="sendMessage">Send Message</button>
-`
-    return html
-}
+        return `
+        <div class="message_form">
+            <div class="header_div">
+                <h2 class="msg_form_header">Direct Message</h2>
+                <button id="exitButton" class="close">&#x2718;</button>
+            </div>
+            
+            </div>
+            <div class="recipient_div">
+                <div>
+                    <label class="msg_label" for="msg_recipient">Recipient:</label>
+                </div>
+                <div>
+                    <select id="msg_recipient" class="selectRecipient" name="msg_recipient">
+                        <option value="">Choose a recipient...</option>
+                        ${users.map(user => {
+                            return `<option class="recipient" value="${user.id}">${user.name}</option>`}).join("")
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="msg_content">
+                <label class="msg_label contentLabel" for="messageBody">Message:</label>
+                <textarea name="msgContent" class= "textarea_message" id="message_body" columns="30" rows="8" placeholder="Message Content"></textarea>
+            </div>
+            <div class="msgForm_button">
+                <button id="sendButton">Send</button>
+                <button id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    `
+};
