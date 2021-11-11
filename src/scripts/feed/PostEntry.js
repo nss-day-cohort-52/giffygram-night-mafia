@@ -3,6 +3,8 @@
 
 export const postEntry = () => {
 
+
+
     let html = `
         <h2>What would you like to post?</h2>
 
@@ -26,3 +28,16 @@ export const postEntry = () => {
     return html
 }
 
+export const postButton = () => {
+    let html = `<button class="button" id="postForm">Have a gift to post?</button>`
+    return html
+}
+
+const applicationElement = document.querySelector(".giffygram")
+
+document.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "postForm") {
+        applicationElement.dispatchEvent(new CustomEvent("postEntryAsk"))
+    }
+
+})

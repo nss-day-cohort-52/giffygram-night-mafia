@@ -1,24 +1,38 @@
-import { GiffyGram } from "./GiffyGram.js"
+import { GiffyGram, GiffyGramWithPost } from "./GiffyGram.js"
 import { LoginForm } from "./auth/Login.js"
 import { fetchUsers, fetchPosts } from "./data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
 // export was below
-    const renderApp = () => {
+const renderApp = () => {
     const user = parseInt(localStorage.getItem("gg_user"))
     fetchUsers()
-    .then(()=>fetchPosts())
-    .then(()=> {
-    if (user) {
-        applicationElement.innerHTML = GiffyGram()
-    } else {
-        applicationElement.innerHTML = LoginForm()
-    }
-})
+        .then(() => fetchPosts())
+        .then(() => {
+            if (user) {
+                applicationElement.innerHTML = GiffyGram()
+            } else {
+                applicationElement.innerHTML = LoginForm()
+            }
+        })
 }
 renderApp()
 
 
 
 
-applicationElement.addEventListener("statechanged", customEvent=>{renderApp()})
+applicationElement.addEventListener("statechanged", customEvent => { renderApp() })
+applicationElement.addEventListener("postEntryAsk", customEvent => { renderAppWithPostForm() })
+
+const renderAppWithPostForm = () => {
+    const user = parseInt(localStorage.getItem("gg_user"))
+    fetchUsers()
+        .then(() => fetchPosts())
+        .then(() => {
+            if (user) {
+                applicationElement.innerHTML = GiffyGramWithPost()
+            } else {
+                applicationElement.innerHTML = LoginForm()
+            }
+        })
+}
