@@ -102,7 +102,6 @@ export const sendMessage = (messageContent) => {
     return fetch(`${API}/messages`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            alert("Your Message Has Been Sent! :D");
             applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         })
 };
