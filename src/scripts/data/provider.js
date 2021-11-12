@@ -2,7 +2,7 @@ const applicationElement = document.querySelector(".giffygram")
 
 
 const applicationState = {
-    users:[],
+    users: [],
     posts: [],
     likes: [],
     followers: [],
@@ -30,15 +30,43 @@ export const getUsers = () => {
     return applicationState.users.map(user => ({ ...user })) //exporting a copy of users array data
 }
 
-export const fetchPosts = () => { 
+export const fetchPosts = () => {
 
     return fetch(`${API}/posts`)
-        .then(response => response.json()) 
+        .then(response => response.json())
         .then((posts) => {
-            applicationState.posts = posts  
+            applicationState.posts = posts
         })
 }
 
 export const getPosts = () => {
-    return applicationState.posts.map(post => ({ ...post })) 
+    return applicationState.posts.map(post => ({ ...post }))
+}
+
+export const savePost = (post) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(post)
+    }
+
+
+    return fetch(`${API}/posts`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
+
+
+export const setCurrentUser = (userObj) => {
+    applicationState.currentUser = userObj
+}
+export const getCurrentUser = () => {
+    return applicationState.currentUser
+}
+export const clearCurrentUser = () => {
+    applicationState.currentUser = {}
 }
