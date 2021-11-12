@@ -107,7 +107,7 @@ export const sendMessage = (messageContent) => {
 };
 
 export const fetchMessages = () => {
-    return fetch(`${API}/posts`)
+    return fetch(`${API}/messages`)
         .then(response => response.json())
         .then((messages) => {
             applicationState.messages = messages
