@@ -27,11 +27,12 @@ document.addEventListener("click", clickEvent => {
 
 
 
-//let messages = GetMessages()  can put messages.length in post
+//! The counter is recording the messages, but still needs to make currentuser to user
 
-let messages = getMessages()  //!
+  
 
 export const navbar = ()=>{
+let messages = getMessages()
 
     let navbarhtml= `
        <navbar class="navigation">

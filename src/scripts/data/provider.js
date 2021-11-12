@@ -17,22 +17,6 @@ const applicationState = {
 
 const API = "http://localhost:3000"
 
-//commented out is added by me
-
-//! export const fetchMessages = () => { 
-
-//!     return fetch(`${API}/messages`)
-//         .then(response => response.json()) 
-//         .then((messages) => {
-//             applicationState.messages = messages  
-//         })
-// }
-
-// export const GetMessages = () => {
-//     return applicationState.messages.map(messages => ({ ...messages })) 
-// }
-
-
 
 
 export const fetchUsers = () => {   // creating a function that grabs the information users put into radio buttons
@@ -64,8 +48,25 @@ export const fetchPosts = () => {
 
 
 export const getPosts = () => {
-    return applicationState.posts.map(post => ({ ...post }))
+    // return applicationState.posts.map(post => ({ ...post }))
+    const postMap = applicationState.posts.map(post => ({ ...post }))
+
+   const sortedPosts= postMap.sort(
+        (post1, post2) => {
+            return post2.id-post1.id
+        }
+        
+    )
+        return sortedPosts
 }
+
+
+
+
+
+
+
+
 export const savePost = (post) => {
     const fetchOptions = {
         method: "POST",
@@ -79,7 +80,7 @@ export const savePost = (post) => {
     return fetch(`${API}/posts`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         })
 
 }
