@@ -49,10 +49,6 @@ export const getUsers = () => {
 }
 
 
-export const getMessages = () => {
-    return applicationState.messages.map(message => ({ ...message })) //exporting a copy of users array data
-}
-
 
 
 export const fetchPosts = () => {
@@ -88,6 +84,10 @@ export const savePost = (post) => {
 
 }
 
+export const getMessages = () => {
+    return applicationState.messages.map(message => ({ ...message }))
+}
+
 
 export const sendMessage = (messageContent) => {
     const fetchOptions = {
@@ -105,6 +105,16 @@ export const sendMessage = (messageContent) => {
             applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         })
 };
+
+export const fetchMessages = () => {
+    return fetch(`${API}/posts`)
+        .then(response => response.json())
+        .then((messages) => {
+            applicationState.messages = messages
+        }
+        )
+    }
+
 
 
 export const setCurrentUser = (userObj) => {
