@@ -1,11 +1,10 @@
-import { getCurrentUser } from "../data/provider.js"
+import { clearCurrentUser, getCurrentUser } from "../data/provider.js"
 
 
 export const Logout = () => {
+    let user = getCurrentUser()
     
-    
-    let currentUser = getCurrentUser()
-    currentUser = {}
+    clearCurrentUser(user)
 
     document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
 }

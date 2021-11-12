@@ -1,6 +1,7 @@
 import { LoginForm } from "../auth/Login.js"
 import { Logout } from "../auth/Logout.js"
 import { MessageForm } from "../message/MessageForm.js"
+import { getMessages } from "../data/provider.js"
 
 
 
@@ -27,19 +28,21 @@ document.addEventListener("click", clickEvent => {
 })
 
 
-//!Tried to add message.length for counter on line 42 might need to add seed data?
 
-//let messages = GetMessages()  can put messages.length in post
 
+//! The counter is recording the messages, but still needs to make currentuser to user
+
+  
 
 export const navbar = ()=>{
+let messages = getMessages()
 
     let navbarhtml= `
        <navbar class="navigation">
            <div class="navigation__icon"> <img src="images/pb.png" alt="giffy logo"/> </div>
            <div id="navigation__name">GiffyGram</div>
            <div id="directMessageIcon"> Pen  <img id ="directMessageIcon" src="images/fountain-pen.svg" alt="pen"/> </div>
-           <div class="notification__count"> 0 </div>
+           <div class="notification__count"> ${messages.length} </div> </div>
            <button id="logout"> logout </button>
        
        </navbar>

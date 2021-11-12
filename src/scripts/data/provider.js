@@ -18,7 +18,6 @@ const applicationState = {
 const API = "http://localhost:3000"
 
 
-
 export const fetchUsers = () => {   // creating a function that grabs the information users put into radio buttons
 
     return fetch(`${API}/users`) //asking for the data from users array from the API
@@ -32,10 +31,6 @@ export const getUsers = () => {
     return applicationState.users.map(user => ({ ...user })) //exporting a copy of users array data
 }
 
-
-export const getMessages = () => {
-    return applicationState.messages.map(message => ({ ...message })) //exporting a copy of users array data
-}
 
 
 
@@ -65,12 +60,6 @@ export const getPosts = () => {
 }
 
 
-
-
-
-
-
-
 export const savePost = (post) => {
     const fetchOptions = {
         method: "POST",
@@ -87,6 +76,10 @@ export const savePost = (post) => {
             applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         })
 
+}
+
+export const getMessages = () => {
+    return applicationState.messages.map(message => ({ ...message }))
 }
 
 
@@ -106,13 +99,55 @@ export const sendMessage = (messageContent) => {
         })
 };
 
+export const fetchMessages = () => {
+    return fetch(`${API}/messages`)
+        .then(response => response.json())
+        .then((messages) => {
+            applicationState.messages = messages
+        }
+        )
+    }
 
-export const setCurrentUser = (userObj) => {
-    applicationState.currentUser = userObj
+
+
+
+export const saveCurrentUser = (userObj) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userObj)
+    }
+
+
+    return fetch(`${API}/currentUser`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+
 }
+
+export const fetchCurrentUser = () => {
+    return fetch(`${API}/currentUser`)
+        .then(response => response.json())
+        .then((currentUser) => {
+            applicationState.currentUser = currentUser
+        }
+        )
+    }
+
+
 export const getCurrentUser = () => {
     return applicationState.currentUser
 }
-export const clearCurrentUser = () => {
-    applicationState.currentUser = {}
+
+export const clearCurrentUser = (user) => {
+    return fetch(`${API}/currentUser/${user}`, { method: "DELETE" })
+        .then(
+            () => {
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
 }
