@@ -4,6 +4,7 @@ const applicationElement = document.querySelector(".giffygram")
 const applicationState = {
     users:[],
     posts: [],
+    messages: [],
     likes: [],
     followers: [],
     currentUser: {},
@@ -47,6 +48,10 @@ export const getUsers = () => {
     return applicationState.users.map(user => ({ ...user })) //exporting a copy of users array data
 }
 
+export const getMessages = () => {
+    return applicationState.messages.map(message => ({ ...message })) //exporting a copy of users array data
+}
+
 export const fetchPosts = () => { 
 
     return fetch(`${API}/posts`)
@@ -59,4 +64,21 @@ export const fetchPosts = () => {
 export const getPosts = () => {
     return applicationState.posts.map(post => ({ ...post })) 
 }
+
+export const sendMessage = (messageContent) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(messageContent)
+    }
+        
+    return fetch(`${API}/messages`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            alert("Your Message Has Been Sent! :D");
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+};
 
