@@ -15,6 +15,7 @@ applicationElement.addEventListener("click", event => {
         }
         if (recipientId !== "" && messageBody !== "") {
             sendMessage(dataToSendToMessageAPI)
+            applicationElement.dispatchEvent(new CustomEvent("statechanged"))
         } else {
             alert("Please fill in all fields")
         }
