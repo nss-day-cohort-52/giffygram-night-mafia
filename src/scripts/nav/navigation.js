@@ -1,4 +1,5 @@
 import { LoginForm } from "../auth/Login.js"
+import { Logout } from "../auth/Logout.js"
 import { MessageForm } from "../message/MessageForm.js"
 
 
@@ -16,12 +17,13 @@ document.addEventListener("click", clickEvent => {
 
 //!Below is event listener for log out button needs functionality
 
-// document.addEventListener("click", clickEvent => {
-//        if (clickEvent.target.id === "logout") {
-//         applicationElement.innerHTML = LoginForm()
-      
-//     }
-// })
+document.addEventListener("click", clickEvent => {
+       if (clickEvent.target.id === "logout") {
+           Logout()
+        applicationElement.dispatchEvent(new CustomEvent("statechanged"))
+
+    }
+})
 
 
 //!Tried to add message.length for counter on line 42 might need to add seed data?

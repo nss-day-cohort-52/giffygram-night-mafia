@@ -1,6 +1,6 @@
 import { GiffyGram, GiffyGramWithPost, GiffyGramWithMessage } from "./GiffyGram.js"
 import { LoginForm } from "./auth/Login.js"
-import { fetchUsers, fetchPosts, } from "./data/provider.js"
+import { fetchUsers, fetchPosts, getCurrentUser, } from "./data/provider.js"
 
 
 const applicationElement = document.querySelector(".giffygram")
@@ -18,10 +18,8 @@ const renderApp = () => {
         })
 }
 renderApp()
-
-
-
-
+let currentUser = getCurrentUser()
+console.log(currentUser)
 applicationElement.addEventListener("statechanged", customEvent => { renderApp() })
 applicationElement.addEventListener("postEntryAsk", customEvent => { renderAppWithPostForm() })
 applicationElement.addEventListener("messageForm", customEvent => { renderAppWithMessageForm() })
