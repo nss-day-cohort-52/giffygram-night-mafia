@@ -21,6 +21,7 @@ applicationElement.addEventListener("click", event => {
     }
 });
 
+
 export const MessageForm = () => {
     const users = getUsers();
 

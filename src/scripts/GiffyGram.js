@@ -7,7 +7,9 @@ import { postButton, postEntry } from "./feed/PostEntry.js"
 export const GiffyGram = () => {
     // Show main main UI
 
-    return `<h1>Giffygram</h1>'
+
+    return `
+
     ${navbar()}
 
     <div class="postEntryForm">${postButton()}</div>
@@ -23,8 +25,9 @@ export const GiffyGram = () => {
 
 export const GiffyGramWithPost = () => {
     // Show main main UI with the post entry form
+    //once button is clicked, page is rendered using this function, replacing the button with the form
 
-    return `<h1>Giffygram</h1>
+    return `
     ${navbar()}
 
     <div class="postEntryForm">${postEntry()}</div>

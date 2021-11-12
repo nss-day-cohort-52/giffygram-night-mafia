@@ -1,3 +1,5 @@
+import { savePost, getUsers, getCurrentUser } from "../data/provider.js"
+
 
 
 
@@ -38,6 +40,30 @@ const applicationElement = document.querySelector(".giffygram")
 document.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "postForm") {
         applicationElement.dispatchEvent(new CustomEvent("postEntryAsk"))
+    }
+
+})
+
+applicationElement.addEventListener("click", clickEvent => {
+    if(clickEvent.target.id === "postGif") {
+        const users=getUsers()
+        const currentUser = getCurrentUser()
+        //get what the user typed into the form fields
+        const postTitle = document.querySelector("input[name='post']").value
+        const imageUrl = document.querySelector("input[name='gif']").value
+        const postStory = document.querySelector("textarea[name='story']").value
+        const posterId = currentUser
+        let currentDate = new Date()
+        const dataToSendToAPI = {
+            posterId,
+            postTitle,
+            imageUrl,
+            postStory,
+            datePosted: currentDate.toLocaleDateString()
+        }
+
+        savePost(dataToSendToAPI)
+        applicationElement.dispatchEvent(new CustomEvent("statechanged"))
     }
 
 })
