@@ -7,7 +7,9 @@ import { postButton, postEntry } from "./feed/PostEntry.js"
 export const GiffyGram = () => {
     // Show main main UI
 
+
     return `
+
     ${navbar()}
 
     <div class="postEntryForm">${postButton()}</div>
@@ -29,15 +31,36 @@ export const GiffyGramWithPost = () => {
     ${navbar()}
 
     <div class="postEntryForm">${postEntry()}</div>
+
+    
     
     <div class="footer_div">
         ${footer()}
     </div>
     
-    <div class="footer_div">
-        ${MessageForm()}
-    </div>
+
 
     <section class="postList">${postList()}</section>
     `
 }
+//this function will run if the message form target is hit
+export const GiffyGramWithMessage = () => {
+   
+
+    return `<h1>Giffygram</h1>
+    ${navbar()}
+
+    <div class="messageEntryForm"> ${MessageForm()} </div>
+
+    
+    
+    <div class="footer_div">
+        ${footer()}
+    </div>
+    
+
+
+    <section class="postList">${postList()}</section>
+    `
+}
+
