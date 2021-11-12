@@ -1,5 +1,6 @@
 import { GiffyGram, GiffyGramWithPost, GiffyGramWithMessage } from "./GiffyGram.js"
 import { LoginForm } from "./auth/Login.js"
+
 import { fetchUsers, fetchPosts, fetchMessages } from "./data/provider.js"
 
 
@@ -10,6 +11,7 @@ const renderApp = () => {
     fetchUsers()
         .then(() => fetchPosts())
         .then(() => fetchMessages())
+        
         .then(() => {
             if (user) {
                 applicationElement.innerHTML = GiffyGram()
@@ -19,7 +21,6 @@ const renderApp = () => {
         })
 }
 renderApp()
-
 
 
 
@@ -34,6 +35,7 @@ const renderAppWithPostForm = () => {
     fetchUsers()
         .then(() => fetchPosts())
         .then(() => fetchMessages())
+        
         .then(() => {
             if (user) {
                 applicationElement.innerHTML = GiffyGramWithPost()
@@ -48,6 +50,7 @@ const renderAppWithMessageForm = () => {
     fetchUsers()
         .then(() => fetchPosts())
         .then(() => fetchMessages())
+        
         .then(() => {
             if (user) { 
                 applicationElement.innerHTML = GiffyGramWithMessage()

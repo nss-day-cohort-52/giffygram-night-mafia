@@ -17,7 +17,13 @@ const applicationState = {
 
 const API = "http://localhost:3000"
 
-
+export const getFeed = () => {
+    return applicationState.feed
+}
+export const setFeedMessagesTrue = () => {
+    applicationState.feed.displayMessages = true
+    applicationElement.dispatchEvent(new CustomEvent("statechanged"))
+}
 
 export const fetchUsers = () => {   // creating a function that grabs the information users put into radio buttons
 
@@ -59,12 +65,6 @@ export const getPosts = () => {
     )
         return sortedPosts
 }
-
-
-
-
-
-
 
 
 export const savePost = (post) => {
@@ -117,12 +117,21 @@ export const fetchMessages = () => {
 
 
 
-export const setCurrentUser = (userObj) => {
+
+export const saveCurrentUser = (userObj) => {
     applicationState.currentUser = userObj
 }
+
+
 export const getCurrentUser = () => {
     return applicationState.currentUser
 }
-export const clearCurrentUser = () => {
-    applicationState.currentUser = {}
+
+export const clearCurrentUser = (user) => {
+    return fetch(`${API}/currentUser/${user}`, { method: "DELETE" })
+        .then(
+            () => {
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
 }
