@@ -26,6 +26,7 @@ export const postEntry = () => {
         </div>
 
         <button class="button" id="postGif">Post my gif!</button>
+        <button class="button" id="cancelGif">Cancel</button>
     `
     return html
 }
@@ -66,4 +67,12 @@ applicationElement.addEventListener("click", clickEvent => {
         applicationElement.dispatchEvent(new CustomEvent("statechanged"))
     }
 
+})
+
+///cancel gif post
+ document.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "cancelGif") {
+       applicationElement.dispatchEvent(new CustomEvent("cancelGif")) //creating a custom event listener that will listen on another module
+
+    }
 })
