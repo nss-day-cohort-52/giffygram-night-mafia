@@ -1,14 +1,14 @@
 import { getPosts, getUsers } from '../data/provider.js'
 
 export const postList = () => {
-    let posts = getPosts()
+    const posts = getPosts()
 
     
 
     const convertPostToListElement = (post) => {
-        let users = getUsers()
-        let foundUserObj = users.find(user=>user.id === post.posterId)
-
+        const users = getUsers()
+        
+        const foundUserObj = users.find(user=>user.id === post.posterId)
         if (foundUserObj === undefined) {
         return `<li class = "postItem">
         <h2>${post.postTitle}</h2>
@@ -26,7 +26,7 @@ export const postList = () => {
         }
     }
 
-    let html = `
+    const html = `
     <ul>
     ${posts.map(convertPostToListElement).join('')}
     </ul>
