@@ -19,7 +19,9 @@ const renderApp = () => {
 }
 renderApp()
 let currentUser = getCurrentUser()
-console.log(currentUser)
+let currentgguser = localStorage.getItem("gg_user")
+console.log(`currentUser object ${currentUser}`)
+console.log(currentgguser)
 applicationElement.addEventListener("statechanged", customEvent => { renderApp() })
 applicationElement.addEventListener("postEntryAsk", customEvent => { renderAppWithPostForm() })
 applicationElement.addEventListener("messageForm", customEvent => { renderAppWithMessageForm() })

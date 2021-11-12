@@ -20,6 +20,7 @@ document.addEventListener("click", clickEvent => {
 document.addEventListener("click", clickEvent => {
        if (clickEvent.target.id === "logout") {
            Logout()
+           localStorage.removeItem("gg_user")
         applicationElement.dispatchEvent(new CustomEvent("statechanged"))
 
     }
