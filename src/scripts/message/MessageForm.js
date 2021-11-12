@@ -1,29 +1,26 @@
-import { getUsers } from "../data/provider.js";
+import { getUsers, sendMessage } from "../data/provider.js";
 
 const applicationElement = document.querySelector(".giffygram");
 
-// applicationElement.addEventListener("click", event => {
-//     if (event.target.id === "sendButton") {
-//         const recipientId = document.querySelector("#msg_recipient").value
-//         const messageBody = document.querySelector("#message_body").value
-//         const topic = document.querySelector("#msg_topic_input").value
+applicationElement.addEventListener("click", event => {
+    if (event.target.id === "sendButton") {
+        const recipientId = document.querySelector("#msg_recipient").value
+        const messageBody = document.querySelector("#message_body").value
         
-//         const dataToSendToAPI = {
-//             userId: parseInt(localStorage.getItem("gg_user")), //need to display name of sender/user
-//             recipientId: parseInt(recipientId),
-//             topic: topic,
-//             messageBody: messageBody,
-//             dateSent: new Date().toLocaleDateString(),
-//         }
+        const dataToSendToMessageAPI = {
+            userId: parseInt(localStorage.getItem("gg_user")), //need to display name of sender/user
+            recipientId: parseInt(recipientId),
+            messageBody: messageBody,
+            dateSent: new Date().toLocaleDateString(),
+        }
+        if (recipientId !== "" && messageBody !== "") {
+            sendMessage(dataToSendToMessageAPI)
+        } else {
+            alert("Please fill in all fields")
+        }
+    }
+});
 
-//         savePendingMessage(dataToSendToAPI);
-//         sendMessage(dataToSendToAPI);
-//     } else if (event.target.id === "exitButton") {
-//         applicationElement.dispatchEvent(new CustomEvent("messageFormStateChanged"));
-//     } else if (event.target.id === "cancelButton") {
-//         applicationElement.dispatchEvent(new CustomEvent("messageFormStateChanged"));
-//     }
-// });
 
 export const MessageForm = () => {
     const users = getUsers();
