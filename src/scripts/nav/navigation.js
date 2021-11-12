@@ -1,16 +1,47 @@
+import { LoginForm } from "../auth/Login.js"
+import { MessageForm } from "../message/MessageForm.js"
+
+
+const applicationElement = document.querySelector(".giffygram")
+
+document.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "directMessageIcon") {
+       applicationElement.dispatchEvent(new CustomEvent("messageForm")) //creating a custom event listener that will listen on another module
+
+    }
+})
+
+
+
+//!Below is event listener for log out button needs functionality
+
+// document.addEventListener("click", clickEvent => {
+//        if (clickEvent.target.id === "logout") {
+//         applicationElement.innerHTML = LoginForm()
+      
+//     }
+// })
+
+
+//!Tried to add message.length for counter on line 42 might need to add seed data?
+
+ let messages = GetMessages()
 
 
 export const navbar = ()=>{
-    return `
-    <navbar class="navigation">
-        <div class="navigation__icon"> <img src="images/pb.png" alt="giffy logo"/> </div>
-        <div id="navigation__name">GiffyGram</div>
-        <div id="directMessageIcon"> <img src="images/fountain-pen.svg" alt="pen"/> </div>
-        <div class="notification__count"> 1 </div>
-        <button id="logout"> logout </button>
-    
-    </navbar>
 
-    `
-}
+    let navbarhtml= `
+       <navbar class="navigation">
+           <div class="navigation__icon"> <img src="images/pb.png" alt="giffy logo"/> </div>
+           <div id="navigation__name">GiffyGram</div>
+           <div id="directMessageIcon"> Pen  <img id ="directMessageIcon" src="images/fountain-pen.svg" alt="pen"/> </div>
+           <div class="notification__count"> ${messages.length} </div>
+           <button id="logout"> logout </button>
+       
+       </navbar>
+   
+       `
+       return navbarhtml
+   }
 
+  

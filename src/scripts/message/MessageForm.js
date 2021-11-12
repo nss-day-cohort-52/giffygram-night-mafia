@@ -25,7 +25,7 @@ const applicationElement = document.querySelector(".giffygram");
 //     }
 // });
 
-export const MessageForm = (state) => {
+export const MessageForm = () => {
     const users = getUsers();
 
         return `
